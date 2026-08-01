@@ -32,8 +32,26 @@ void printmaxsum(vector<int>& arr){
     cout<<maxsum<<endl;
     return;
 }
+
+// kadane's algorithm ----||-----||------||---
+void kadaneAlgo(vector<int>& arr){
+    if(arr.empty()) {
+        cout<<"0"<<endl;
+    }
+    int maxsum=INT_MIN;
+     int cursum=0;
+    for(int i=0;i<arr.size();i++){
+       cursum+=arr[i];
+        maxsum=max(maxsum,cursum);
+        if(cursum<0){
+            cursum=0;
+        }
+    }
+    cout<<maxsum<<endl;
+    return;
+}
 int main(){
-   vector<int>arr={1,2,3,4,5};
-   printSubArray(arr);
+   vector<int>arr={4,-1,5,4,-2,7,-8};
+   kadaneAlgo(arr);
     return 0;
 }
