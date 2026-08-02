@@ -37,6 +37,7 @@ void printmaxsum(vector<int>& arr){
 void kadaneAlgo(vector<int>& arr){
     if(arr.empty()) {
         cout<<"0"<<endl;
+        return;
     }
     int maxsum=INT_MIN;
      int cursum=0;
@@ -50,8 +51,25 @@ void kadaneAlgo(vector<int>& arr){
     cout<<maxsum<<endl;
     return;
 }
+// for finding majority element by boyer moore voting algorithm
+int majorityele1(vector<int>& arr){
+    int element=0;
+    int count=0;
+    for(int i=0;i<arr.size();i++){
+        if(count==0){
+            element=arr[i];
+        }
+        if(element==arr[i]){
+            count++;
+        }else{
+            count--;
+        }
+
+    }
+    return element;
+}
 int main(){
-   vector<int>arr={4,-1,5,4,-2,7,-8};
-   kadaneAlgo(arr);
+   vector<int>arr={1,2,2,1,1,2,2};
+   cout<<majorityele1(arr)<<endl;
     return 0;
 }
