@@ -91,6 +91,22 @@ double myPow(double x, int n) {
     }
     return ans;
 }
+int maxProfit(vector<int>& prices) {
+    if(prices.empty()||prices.size()==1) return 0;
+    int minprice=INT_MAX;
+    int maxprofit=0;
+    for(int i=0;i<prices.size();i++){
+        if(minprice>prices[i]){
+            minprice=prices[i];
+        }
+        else{
+            int profit=prices[i]-minprice;
+            maxprofit=max(profit,maxprofit);
+        }
+    
+    }
+    return maxprofit;
+}
 int main(){
    vector<int>arr={1,2,2,1,1,2,2};
    cout<<majorityele1(arr)<<endl;
