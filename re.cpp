@@ -107,6 +107,26 @@ int maxProfit(vector<int>& prices) {
     }
     return maxprofit;
 }
+int maxArea(vector<int>& height) {
+    int maxwater=0;
+    int i=0;
+    int j=height.size()-1;
+    while(i<j){
+        int hei=min(height[i],height[j]);
+        int wid=j-i;
+        int curwater=hei*wid;
+        maxwater=max(maxwater,curwater);    
+        if(height[i]<height[j]){
+            i++;
+        }
+        else{
+            j--;
+        }
+    }
+
+    return maxwater;
+}
+
 int main(){
    vector<int>arr={1,2,2,1,1,2,2};
    cout<<majorityele1(arr)<<endl;
