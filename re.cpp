@@ -126,7 +126,19 @@ int maxArea(vector<int>& height) {
 
     return maxwater;
 }
-
+vector<int> productExceptSelf(vector<int>& nums) {
+    if(nums.empty()||nums.size()==1) return {};
+    vector<int>ans(nums.size(),1);
+    for(int i=1;i<nums.size();i++){
+        ans[i]=nums[i-1]*ans[i-1];
+    }
+    int suffix=1;
+    for(int i=nums.size()-1;i>=0;i--){
+        ans[i]*=suffix;
+        suffix*=nums[i];
+    }
+    return ans;
+}
 int main(){
    vector<int>arr={1,2,2,1,1,2,2};
    cout<<majorityele1(arr)<<endl;
