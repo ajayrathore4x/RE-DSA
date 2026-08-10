@@ -139,6 +139,33 @@ vector<int> productExceptSelf(vector<int>& nums) {
     }
     return ans;
 }
+int search(vector<int>& nums, int target) {
+    if(nums.empty()) return -1;
+    int st=0;int end=nums.size()-1;
+    while(st<=end){
+        int mid=st+((end-st)/2);
+        if(nums[mid]==target){
+            return mid;
+        }
+        if(nums[mid]>=nums[st]){
+        if(target>=nums[st]&&nums[mid]>target){
+            end=mid-1;
+        }else{
+            st=mid+1;
+        }
+        }
+        else{
+        if(target<=nums[end]&&target>nums[mid]){
+            st=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+        }
+    }
+    return -1;
+}
+
 int main(){
    vector<int>arr={1,2,2,1,1,2,2};
    cout<<majorityele1(arr)<<endl;
