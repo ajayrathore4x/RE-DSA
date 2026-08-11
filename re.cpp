@@ -165,7 +165,24 @@ int search(vector<int>& nums, int target) {
     }
     return -1;
 }
-
+int peakIndexInMountainArray(vector<int>& arr) {
+    if(arr.empty()||arr.size()<3) return -1;
+    int st=1;
+    int end=arr.size()-2;
+    while(st<=end){
+        int mid = st+((end-st)/2);
+        if(arr[mid-1]<arr[mid]&&arr[mid]>arr[mid+1]){
+            return mid;
+        }
+        if(arr[mid-1]<arr[mid]){
+            st=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    } 
+    return -1;
+}
 int main(){
    vector<int>arr={1,2,2,1,1,2,2};
    cout<<majorityele1(arr)<<endl;
