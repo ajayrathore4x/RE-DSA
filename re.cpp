@@ -215,7 +215,42 @@ int singleNonDuplicate(vector<int>& nums) {
     return -1;
     
 }
-
+bool isvalidmid(const vector<int>& arr,int n,int k,int mid){
+    int student=1;int pages=0;
+    for(int i=0;i<n;i++){
+        if(arr[i]>mid) return false;
+        if(pages+arr[i]<=mid){
+            pages+=arr[i];
+        }else{
+            student++;
+            pages=arr[i];
+        }
+    }
+    if(student<=k)return true;
+    else return false;
+}
+int findPages(vector<int> &arr, int k) {
+    // code here
+    int n=arr.size();
+    if(k>n) return -1;
+    if(arr.empty()) return -1;
+    int stvalue=0;int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        stvalue=max(stvalue,arr[i]);
+    }
+    int st=stvalue;int end=sum;
+    while(st<=end){
+        int mid=st+((end-st)/2);
+        if(isvalidmid(arr,n,k,mid)){
+            end=mid-1;
+        }
+        else{
+            st=mid+1;
+        }
+    }
+    return st;
+}
 int main(){
    vector<int>arr={1,2,2,1,1,2,2};
    cout<<majorityele1(arr)<<endl;
