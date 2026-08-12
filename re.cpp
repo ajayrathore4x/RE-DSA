@@ -251,8 +251,46 @@ int findPages(vector<int> &arr, int k) {
     }
     return st;
 }
+bool isvalid(const vector<int>& arr,int n,int k,int mid){
+    int painter=1;int boards=0;
+    for(int i=0;i<n;i++){
+        if(mid<arr[i]) return false;
+        if(boards+arr[i]<=mid){
+            boards+=arr[i];
+        }
+        else{
+            painter++;
+            boards=arr[i];
+        }
+    }
+    if(painter<=k) return true;
+    else return false;
+}
+int minTime(vector<int>& arr, int k) {
+    // code here
+    int n=arr.size();
+    if(k>n) return -1;
+    int stp=1;int sum=0;
+    for(int i=0;i<n;i++){
+        stp=max(stp,arr[i]);
+        sum+=arr[i];
+    }
+    int st=stp;
+    int end=sum;
+    while(st<=end){
+        int mid=st+((end-st)/2);
+        if(isvalid(arr,n,k,mid)){
+            end=mid-1;
+        }
+        else{
+            st=mid+1;
+        }
+    }
+    return st;
+}
+
 int main(){
-   vector<int>arr={1,2,2,1,1,2,2};
-   cout<<majorityele1(arr)<<endl;
+   vector<int>arr={5,10,30,20,15};
+   cout<<minTime(arr,3);
     return 0;
 }
