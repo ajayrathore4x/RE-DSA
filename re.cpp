@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 // for printing maximum subarray of a array-----||------
@@ -288,7 +289,34 @@ int minTime(vector<int>& arr, int k) {
     }
     return st;
 }
-
+bool isvalid1(const int arr[],int n,int k,int mid){
+    int cow=1;int stall=arr[0];
+    for(int i=1;i<n;i++){
+        if(arr[i]-stall>=mid){
+            stall=arr[i];
+            cow++;
+        }
+    }
+    if(cow>=k) return true;
+    else return false;
+}
+int aggressiveCows(int *arr, int n, int k) {
+    // code here
+    sort(arr, arr + n);
+    int st = 1;
+    int end = arr[n-1] - arr[0];
+    while(st<=end){
+        int mid=st+((end-st)/2);
+        
+        if(isvalid1(arr,n,k,mid)){
+            st=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    return end;
+}
 int main(){
    vector<int>arr={5,10,30,20,15};
    cout<<minTime(arr,3);
