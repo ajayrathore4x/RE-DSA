@@ -359,6 +359,30 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n){
 
     return;
 }
+void nextPermutation(vector<int>& nums) {
+    int n=nums.size();
+    int pivot=-1;
+    for(int i=n-2;i>=0;i--){
+    if(nums[i]<nums[i+1]){
+        pivot=i;
+        break;
+    }
+    }  
+    if(pivot==-1){
+    reverse(nums.begin(),nums.end());
+    return;
+    }
+    for(int i=n-1;i>pivot;i--){
+    if(nums[pivot]<nums[i]){
+        swap(nums[pivot],nums[i]);
+        break;
+    }
+
+    
+    }  
+    reverse(nums.begin()+pivot+1,nums.end());
+    return;
+}
 int main(){
    vector<int>arr={5,10,30,20,15};
    cout<<minTime(arr,3);
