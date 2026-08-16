@@ -402,6 +402,13 @@ while(i<=j){
 
 return true;
 }
+string removeOccurrences(string s, string part) {
+while(true){
+    size_t pos=s.find(part);
+    if(pos==string::npos) return s;
+        s.erase(pos,part.length());
+    }
+}
 int main(){
    vector<int>arr={5,10,30,20,15};
    cout<<minTime(arr,3);
