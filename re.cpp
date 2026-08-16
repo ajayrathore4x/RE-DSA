@@ -383,6 +383,25 @@ void nextPermutation(vector<int>& nums) {
     reverse(nums.begin()+pivot+1,nums.end());
     return;
 }
+bool isPalindrome(string s) {
+        if(s.empty()) return true;
+int i=0,j=s.size()-1;
+while(i<=j){
+    if(!isalnum(s[i])){
+        i++;
+        continue;
+    }
+    if(!isalnum(s[j])){
+            j--;
+        continue;
+    }
+
+    if(tolower(s[i])!=tolower(s[j])) return false;
+    i++;j--;
+}
+
+return true;
+}
 int main(){
    vector<int>arr={5,10,30,20,15};
    cout<<minTime(arr,3);
