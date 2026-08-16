@@ -409,6 +409,34 @@ while(true){
         s.erase(pos,part.length());
     }
 }
+bool areArrayEqual(int a[],int b[]){
+    for(int i=0;i<26;i++){
+        if(a[i]!=b[i]){
+            return false;
+        }
+    }
+    return true;
+}
+bool checkInclusion(string s1, string s2) {
+    int freq[26]={0};
+    for(int i=0;i<s1.length();i++){
+        freq[s1[i]-'a']++;
+    }
+    int i=0;
+    while((i+s1.length()-1)<s2.length()){
+        int s2freq[26]={0};
+        for (int j=i;j<i+s1.length();j++){
+            s2freq[s2[j]-'a']++;
+        }
+        if(areArrayEqual(freq,s2freq)){
+            return true;
+        }
+        else {
+            i++;
+        }
+    }
+    return false;
+}
 int main(){
    vector<int>arr={5,10,30,20,15};
    cout<<minTime(arr,3);
