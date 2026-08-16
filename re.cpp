@@ -437,6 +437,31 @@ bool checkInclusion(string s1, string s2) {
     }
     return false;
 }
+bool checkInclusion(string s1, string s2) {
+int freq[26] = {0};
+int window[26] = {0};
+
+for(char ch : s1) {
+    freq[ch - 'a']++;
+}
+
+int k = s1.length();
+
+for(int i = 0; i < s2.length(); i++) {
+    window[s2[i] - 'a']++;
+
+    if(i >= k) {
+        window[s2[i - k] - 'a']--;
+    }
+
+    if(i >= k - 1 && areArrayEqual(freq, window)) {
+        return true;
+    }
+}
+
+return false;
+}
+
 int main(){
    vector<int>arr={5,10,30,20,15};
    cout<<minTime(arr,3);
